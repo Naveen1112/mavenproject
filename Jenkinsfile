@@ -1,9 +1,6 @@
 node{
-  environment{
-    PATH = "/home/ec2-user/apache-maven-3.8.2/bin:$PATH"
-  }
   stage('SCM Checkout'){
-    git 'https://github.com/Naveen1112/SampleWebApplication'
+    git 'https://github.com/Naveen1112/mavenproject'
   }
   stage('Compile-Package'){
     //Get Maven Home Path
@@ -14,7 +11,7 @@ node{
   }
   stage('Deploy to Tomcat'){
     sshagent(['tomcat_user']) {
-      sh 'scp -o StrictHostKeyChecking=no target/SampleWebApplication.war ec2-user@ip-172-31-95-197.ec2.internal:/home/ec2-user/tomcat/apache-tomcat-8.5.71/webapps/'
+      sh 'scp -o StrictHostKeyChecking=no target/mavenproject.war nikitha_gundla16@34.125.55.108:/home/nikitha_gundla16/tomcat/apache-tomcat-8.5.71/webapps'
     }
   }
 }
