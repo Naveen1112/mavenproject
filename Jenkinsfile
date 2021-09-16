@@ -11,7 +11,7 @@ node{
   }
   stage('Deploy to Tomcat'){
     sshagent(['tomcat_user']) {
-      sh 'scp -o StrictHostKeyChecking=no target/mavenproject.war nikitha_gundla16@34.125.55.108:/home/nikitha_gundla16/tomcat/apache-tomcat-8.5.71/webapps'
+      sh 'scp -o StrictHostKeyChecking=no target/mavenproject.war nikitha_gundla16@10.182.0.2:/home/nikitha_gundla16/tomcat/apache-tomcat-8.5.71/webapps'
     }
   }
 }
