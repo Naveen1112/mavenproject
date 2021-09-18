@@ -14,7 +14,7 @@ node('docker-agent'){
     sh "${mvnHome}/bin/mvn clean install"
   }
   stage('Docker Image Build'){
-    sh 'docker build -t naveen1112/maventomcat:1.0 .'
+    sh 'docker build -t maventomcat:1.0 .'
   }
   stage ('Run Docker image in Dev Environment'){
     def dockerRun = 'docker run -p 8080:8080 -d -name tomcatapp maventomcat:1.0'
