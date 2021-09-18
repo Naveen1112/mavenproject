@@ -17,6 +17,6 @@ node('docker-agent'){
     sh 'docker build -t maventomcat:1.0 .'
   }
   stage ('Run Docker Container'){
-      sh 'docker run -p 8080:8080 -d --name tomcatapp maventomcat:1.0'
+      sh 'docker run -p 9090:8080 -d --name tomcatapp maventomcat:1.0'
   } 
 }
