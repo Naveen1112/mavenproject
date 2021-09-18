@@ -17,7 +17,7 @@ node('docker-agent'){
     sh 'docker build -t naveen1112/maventomcat:1.0 .'
   }
   stage ('Push Docker Image'){
-    withCredentials([string(credentialsId: 'd6e09692-86f9-49f2-b447-4831a10fbd53', variable: 'DockerHubpwd')]) {
+    withCredentials([string(credentialsId: 'd6e09692-86f9-49f2-b447-4831a10fbd53', variable: 'DockerHubpwd', $class: 'com.cloudbees.plugins.credentials.common.StandardUsernamePasswordCredentials')]) {
       sh "docker login -u naveen1112 -p ${DockerHubpwd}"
     }
     sh 'docker push naveen1112/maventomcat:1.0'
