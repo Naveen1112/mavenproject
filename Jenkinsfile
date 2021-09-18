@@ -16,6 +16,6 @@ node('docker-agent'){
   //}
   stage('Docker Image Build'){
     def docker = tool name: 'docker', type: 'dockerTool'
-    sh 'docker build -t naveen1112/maventomcat:1.0 .'
+    sh '${docker}/bin/docker build -t naveen1112/maventomcat:1.0 .'
   }
 }
