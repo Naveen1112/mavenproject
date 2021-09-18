@@ -13,14 +13,19 @@ node('docker-agent'){
     //sh "${mvnHome}/bin/mvn package"
     sh "${mvnHome}/bin/mvn clean install"
   }
-  //stage('Deploy to Tomcat'){
-    //sshagent(['tomcat_user']) {
-      //sh 'scp -o StrictHostKeyChecking=no target/mavenproject.war nikitha_gundla16@10.182.0.2:/home/nikitha_gundla16/tomcat/apache-tomcat-8.5.71/webapps'
-    //}
-  //}
   stage('Docker Image Build'){
-    //def dockerTool = tool name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-    //withEnv(["DOCKER=${dockerTool}/bin"])
     sh 'docker build -t naveen1112/maventomcat:1.0 .'
   }
+  stage ('Push Docker Image'){
+    withCredentials([string(credentialsId: 'd6e09692-86f9-49f2-b447-4831a10fbd53', variable: 'DockerHubpwd')]) {
+      sh "docker login -u naveen1112 -p ${DockerHubpwd}"
+    }
+    sh 'docker push naveen1112/maventomcat:1.0'
+  }
+  stage ('Run Docker image in Dev Environment'){
+    def dockerRun = 'docker run -p 8080:8080 -d -name tomcatapp mav'entomcat:1.0'
+    sshagent(['dev_user']) {
+      sh "ssh -o StrictHostKeyChecking=no ec2-user@ip-172-31-25-100.ec2.internal ${dockerRun}"
+    }
+  } 
 }
