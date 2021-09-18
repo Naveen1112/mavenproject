@@ -17,6 +17,6 @@ node('docker-agent'){
   stage('Docker Image Build'){
     def dockerTool = tool name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
     //withEnv(["DOCKER=${dockerTool}/bin"])
-    sh '${dockerTool}/bindocker build -t naveen1112/maventomcat:1.0 .'
+    sh '${dockerTool}/bin/docker build -t naveen1112/maventomcat:1.0 .'
   }
 }
