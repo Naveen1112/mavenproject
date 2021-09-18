@@ -3,7 +3,6 @@ node('docker-agent'){
         def dockerTool = tool name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
         docker = "${dockerTool}/bin"
     }
-      def dockerTool = 
   stage('SCM Checkout'){
     git 'https://github.com/Naveen1112/mavenproject'
   }
