@@ -1,4 +1,7 @@
 node('docker-agent'){
+  tools {
+    'org.jenkinsci.plugins.docker.commons.tools.DockerTool' 'latest'
+  }
   stage('SCM Checkout'){
     git 'https://github.com/Naveen1112/mavenproject'
   }
@@ -15,7 +18,7 @@ node('docker-agent'){
     //}
   //}
   stage('Docker Image Build'){
-    def docker = tool name: 'docker', type: 'dockerTool'
-    sh '${docker}/bin/docker build -t naveen1112/maventomcat:1.0 .'
+    //def docker = tool name: 'docker', type: 'dockerTool'
+    sh 'docker build -t naveen1112/maventomcat:1.0 .'
   }
 }
