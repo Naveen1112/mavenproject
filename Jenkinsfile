@@ -14,4 +14,7 @@ node('docker-agent'){
       //sh 'scp -o StrictHostKeyChecking=no target/mavenproject.war nikitha_gundla16@10.182.0.2:/home/nikitha_gundla16/tomcat/apache-tomcat-8.5.71/webapps'
     //}
   //}
+  stage('Docker Image Build'){
+    sh 'docker build -t naveen1112/maventomcat:1.0 .'
+  }
 }
