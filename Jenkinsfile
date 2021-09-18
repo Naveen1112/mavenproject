@@ -17,9 +17,6 @@ node('docker-agent'){
     sh 'docker build -t maventomcat:1.0 .'
   }
   stage ('Run Docker image in Dev Environment'){
-    def dockerRun = 'docker run -p 8080:8080 -d -name tomcatapp maventomcat:1.0'
-    sshagent(['dev_user']) {
-      sh "ssh -o StrictHostKeyChecking=no ec2-user@ip-172-31-25-100.ec2.internal ${dockerRun}"
-    }
+      sh 'docker run -p 8080:8080 -d -name tomcatapp maventomcat:1.0'
   } 
 }
